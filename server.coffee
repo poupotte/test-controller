@@ -7,7 +7,7 @@ application = module.exports = (callback) ->
         name: process.env.NAME or false
         global: process.env.GLOBAL or false
         test: process.env.TEST or false
-    fs.writeFile '/usr/local/cozy/test-env.json', JSON.stringify(data), (err) ->
+    fs.writeFile "#{process.env.HOME}/test-env.json", JSON.stringify(data), (err) ->
         console.log err
 
 if not module.parent
