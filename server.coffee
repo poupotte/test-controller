@@ -1,4 +1,5 @@
 fs = require 'fs'
+http = require 'http'
 ## Changement de configuration : pas pris en compte
 
 application = module.exports = (callback) ->
@@ -9,6 +10,10 @@ application = module.exports = (callback) ->
         test: process.env.TEST or false
     fs.writeFile "#{process.env.HOME}/test-env.json", JSON.stringify(data), (err) ->
         console.log err
+        http.createServer (req, res) ->
+          res.writeHead 200, {'Content-Type': 'text/plain'}
+          res.end 'Hello World\n'
+        .listen 1337, '127.0.0.1'
 
 if not module.parent
     application()
